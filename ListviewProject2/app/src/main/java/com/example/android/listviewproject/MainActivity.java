@@ -1,14 +1,12 @@
 package com.example.android.listviewproject;
 
 import android.content.Intent;
-import android.graphics.drawable.shapes.Shape;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -41,9 +39,24 @@ public class MainActivity extends AppCompatActivity {
         shopItems.add(honey);
 
         ListView listView = findViewById(R.id.list);
-
         ItemAdapter itemAdapter = new ItemAdapter(this, 0, shopItems);
         listView.setAdapter(itemAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            class DetailsActivity {
+            }
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long p) {
+                Items currentItem = shopItems.get(i);
+                Intent intent = new Intent(MainActivity.this, Details_Activity.class);
+                intent.putExtra("item", currentItem);
+                startActivity(intent);
+
+            }
+        });
+
+
 
 
 

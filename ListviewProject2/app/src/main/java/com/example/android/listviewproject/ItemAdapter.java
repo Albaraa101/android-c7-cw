@@ -41,11 +41,20 @@ class ItemAdapter extends ArrayAdapter<Items> {
         //
         ImageView shapeImageTextView = view.findViewById(R.id.item1_image);
         shapeImageTextView.setImageResource(currentItem.getItemImage());
-
-        //
+         ImageView delete = view.findViewById(R.id.shape_remove);
         TextView price = view.findViewById(R.id.item1_price);
         price.setText(currentItem.getItemPrice() + "");
 
+         delete.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 items.remove(position);
+                 notifyDataSetChanged();
+
+
+
+             }
+         });
      
         return view;
     }
